@@ -6,9 +6,11 @@ const modal = document.querySelector('.modal');
 const game = document.getElementById('game');
 const time__status = document.querySelector('.time--status');
 const stars__status = document.querySelector('.stars--status');
+
 const open = [];
 const matched = [];
 
+let gameStarted = false;
 let counter = 0;
 let moves = document.querySelector('.moves');
 
@@ -32,7 +34,11 @@ function init() {
   shufflingDone(cards);
   flipCardsOnClick();
 
-  timer.innerText = gameTime(1000);
+  if (moves.innerText != '0') {
+    gameStarted = true;
+  } else if (gameStarted === true) {
+    timer.innerText = gameTime(1000);
+  }
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -114,8 +120,7 @@ function gameWon(array) {
 function displayModal() {
   modal.classList.remove('hidden');
   time__status.innerText = counter;
-  stars__status.innerHTML = [...stars];
-  game.insertAdjacentHTML('beforebegin', modal);
+  //stars__status.innerHTML = [...stars];
 }
 
 function flipCardsOnClick() {
