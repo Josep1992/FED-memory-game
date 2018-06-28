@@ -113,7 +113,11 @@ h1 {
   position: absolute;
   margin: 20px auto;
   background: #14c4bc;
-  border-radius: 5px;
+  border-radius: 7px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  padding: 0.75em;
+  left: 0;
+  right: 0;
 }
 
 .modal--header,
@@ -122,10 +126,10 @@ h1 {
 }
 
 .modal--title {
-  font-size: 3rem;
+  font-size: 4rem;
   color: white;
 }
 
 .hidden {
-  transform: translate(-400px);
+  transform: translate(-500px);
 }
