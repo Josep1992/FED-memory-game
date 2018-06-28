@@ -111,7 +111,7 @@ h1 {
 .modal {
   width: 400px;
   position: absolute;
-  margin: 20px auto;
+  margin: 15em auto 0 auto;
   background: #14c4bc;
   border-radius: 7px;
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -131,5 +131,5 @@ h1 {
 }
 
 .hidden {
-  transform: translate(-500px);
+  transform: translate(-5000px);
 }
