@@ -2,7 +2,10 @@ const cards = Array.from(document.querySelectorAll('.card'));
 const restart = document.querySelector('.fa-repeat');
 const timer = document.querySelector('.timer');
 const deck = document.querySelector('.deck');
-
+const modal = document.querySelector('.modal');
+const game = document.getElementById('game');
+const time__status = document.querySelector('.time--status');
+const stars__status = document.querySelector('.stars--status');
 const open = [];
 const matched = [];
 
@@ -105,7 +108,14 @@ function checkIfCardsMatch(array) {
 }
 
 function gameWon(array) {
-  array.length === 16 ? console.log('YOU WON!!!') : console.log(array);
+  array.length === 16 ? displayModal() : console.log(array);
+}
+
+function displayModal() {
+  modal.classList.remove('hidden');
+  time__status.innerText = counter;
+  stars__status.innerHTML = [...stars];
+  game.insertAdjacentHTML('beforebegin', modal);
 }
 
 function flipCardsOnClick() {
