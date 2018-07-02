@@ -1,10 +1,12 @@
 html {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
+  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -22,9 +24,18 @@ body {
 }
 
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -40,13 +51,23 @@ h1 {
 .deck {
   width: 660px;
   min-height: 680px;
+  background: -webkit-linear-gradient(290deg, #02ccba 0%, #aa7ecd 100%);
+  background: -o-linear-gradient(290deg, #02ccba 0%, #aa7ecd 100%);
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   padding: 32px;
   border-radius: 10px;
+  -webkit-box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0 0 3em;
 }
@@ -59,13 +80,21 @@ h1 {
   color: #ffffff;
   border-radius: 8px;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
+  -webkit-transform: rotateY(0);
   transform: rotateY(0);
   background: #02b3e4;
   cursor: default;
@@ -113,11 +142,13 @@ h1 {
   position: absolute;
   margin: 15em auto 0 auto;
   background: #14c4bc;
-  border-radius: 7px;
+  border-radius: 8px;
+  -webkit-box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   padding: 0.75em;
   left: 0;
   right: 0;
+  z-index: 1;
 }
 
 .modal--header,
@@ -131,5 +162,16 @@ h1 {
 }
 
 .hidden {
-  transform: translate(-5000px);
+  -webkit-transform: translate(-9999px);
+  -ms-transform: translate(-9999px);
+  transform: translate(-9999px);
+}
+
+.noClick {
+  pointer-events: none;
+}
+
+.blur {
+  -webkit-filter: blur(10px); /* Chrome, Safari, Opera */
+  filter: blur(10px);
 }
