@@ -1,18 +1,22 @@
 const cards = Array.from(document.querySelectorAll('.card'));
 const restart = document.querySelectorAll('.fa-repeat');
-const timer = document.querySelector('.timer');
+const timer = document.querySelector('.timer-container');
 const deck = document.querySelector('.deck');
 const modal = document.querySelector('.modal');
 const game = document.getElementById('game');
-const time__status = document.querySelector('.time--status');
-const stars__status = document.querySelector('.stars--status');
+const time__status = document.querySelector('#time--status');
+const stars__status = document.querySelector('#stars--status');
+const moves__status = document.querySelector('#moves--status');
 const stars = document.querySelectorAll('.fa-star');
 
 const open = [];
 const matched = [];
 
+let minutes = 0;
+let seconds = 0;
+
 let counter = 0;
-let moves = document.querySelector('.moves');
+let moves = document.querySelector('.moves-display');
 
 /*
 ?++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -33,6 +37,7 @@ function init() {
   shuffle(cards);
   shufflingDone(cards);
   flipCardsOnClick();
+  gameTime();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -62,7 +67,8 @@ function shufflingDone(array) {
 }
 
 function handleMoves() {
-  moves.textContent++;
+  counter++;
+  moves.innerText = counter;
 }
 
 function addOpenAndShowClassToCards(element) {
@@ -81,26 +87,32 @@ function resetGame() {
   window.location.reload();
 }
 
-function gameTime(seconds) {
+function gameTime() {
   setInterval(() => {
-    timer.textContent = counter++;
-  }, seconds);
+    timer.innerText = `${minutes} mins ${seconds} sec`;
+    seconds++;
+    if (seconds === 60) {
+      minutes++;
+      seconds = 0;
+    }
+  }, 1000);
 }
 
 function handleStars() {
   const [...star] = stars;
 
   function starDisplay(position) {
-    star[0].parentElement.style.display = 'none';
+    star[position].parentElement.style.display = 'none';
   }
-  switch (moves.innerText) {
-    case '8':
+
+  switch (counter) {
+    case 8:
       starDisplay(0);
       break;
-    case '16':
+    case 16:
       starDisplay(1);
       break;
-    case '21':
+    case 21:
       starDisplay(2);
     default:
       break;
@@ -121,7 +133,7 @@ function checkIfCardsMatch(array) {
         removeOpenAndShowClass(el);
         el.classList.remove('noClick');
         el.style.border = 'none';
-      }, 1200);
+      }, 1000);
     });
 
     array.length = 0;
@@ -138,7 +150,9 @@ function gameWon(array) {
 
 function displayModal() {
   modal.classList.remove('hidden');
-  time__status.innerText = counter;
+  time__status.innerText = timer.innerHTML;
+  moves__status.innerText = counter;
+  stars__status.innerHTML = document.querySelector('.stars').innerHTML;
   game.classList.add('blur');
 }
 
