@@ -115,25 +115,24 @@ h1 {
  */
 
 .score-panel {
-  text-align: left;
-  width: 345px;
   margin-bottom: 10px;
+  display: flex;
+  align-content: center;
+  padding: 0;
+  list-style: none;
 }
 
 .score-panel .stars {
-  margin: 0;
-  padding: 0;
   display: inline-block;
   margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
-  list-style: none;
   display: inline-block;
 }
 
 .score-panel .restart {
-  float: right;
+  /* float: right; */
   cursor: pointer;
 }
 
@@ -159,6 +158,11 @@ h1 {
 .modal--title {
   font-size: 4rem;
   color: white;
+}
+
+.modal--status #stars--status {
+  display: inline-block;
+  list-style: none;
 }
 
 .hidden {
