@@ -19,16 +19,21 @@
         </div>
         <div class="modal--body">
             <div class="modal--status">
-                <p> Time:
-                    <span class="time--status"></span>
+                <p> Your Time:
+                    <span id="time--status"></span>
                 </p>
 
-                <p>Stars:
-                    <span class="stars--status"></span>
+                <p> Your Moves:
+                    <span id="moves--status"></span>
                 </p>
+
+
+                <ul id="stars--status">
+                </ul>
+
             </div>
 
-            <button class="modal--replay">Play Again?
+            <button class="modal--replay">
                 <i class="fa fa-repeat"></i>
             </button>
 
@@ -53,16 +58,19 @@
                 </li>
             </ul>
 
-            <span class="moves">0</span> Moves
-            <br>
-            <p>Game Time:
-                <span class="timer"></span>
-            </p>
+            <div class="timer-container">
+
+            </div>
+
+            <div class="moves-container">
+                <span class="moves-display">0</span> Moves
+            </div>
 
 
             <div class="restart">
                 <i class="fa fa-repeat"></i>
             </div>
+
         </section>
 
         <ul class="deck">
