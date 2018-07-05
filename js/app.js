@@ -5,15 +5,17 @@ const deck = document.querySelector('.deck');
 const modal = document.querySelector('.modal');
 const game = document.getElementById('game');
 const time__status = document.querySelector('#time--status');
-const stars__status = document.querySelector('#stars--status');
+const stars__status = document.querySelector('#star--status');
 const moves__status = document.querySelector('#moves--status');
 const stars = document.querySelectorAll('.fa-star');
+let starsRating = 3;
 
 const open = [];
 const matched = [];
 
-let minutes = 0;
-let seconds = 0;
+const seconds = document.getElementById('seconds');
+const minutes = document.getElementById('minutes');
+let totalSeconds = 0;
 
 let counter = 0;
 let moves = document.querySelector('.moves-display');
@@ -37,7 +39,6 @@ function init() {
   shuffle(cards);
   shufflingDone(cards);
   flipCardsOnClick();
-  gameTime();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -67,6 +68,9 @@ function shufflingDone(array) {
 }
 
 function handleMoves() {
+  if (counter === 0) {
+    setInterval(gameTime, 1000);
+  }
   counter++;
   moves.innerText = counter;
 }
@@ -87,15 +91,20 @@ function resetGame() {
   window.location.reload();
 }
 
+// https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa\
 function gameTime() {
-  setInterval(() => {
-    timer.innerText = `${minutes} mins ${seconds} sec`;
-    seconds++;
-    if (seconds === 60) {
-      minutes++;
-      seconds = 0;
-    }
-  }, 1000);
+  ++totalSeconds;
+  seconds.innerHTML = pad(totalSeconds % 60);
+  minutes.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  let valString = val + '';
+  if (valString.length < 2) {
+    return '0' + valString;
+  } else {
+    return valString;
+  }
 }
 
 function handleStars() {
@@ -106,14 +115,17 @@ function handleStars() {
   }
 
   switch (counter) {
-    case 8:
+    case 7:
       starDisplay(0);
+      starsRating--;
       break;
-    case 16:
+    case 15:
       starDisplay(1);
+      starsRating--;
       break;
-    case 21:
+    case 20:
       starDisplay(2);
+      starsRating--;
     default:
       break;
   }
@@ -123,16 +135,22 @@ function checkIfCardsMatch(array) {
   if (array[0].children[0].classList[1] === array[1].children[0].classList[1]) {
     matched.push(array[0], array[1]);
     array.length = 0;
-    matched.forEach((el) => (el.style.border = '5px solid green'));
+    matched.forEach((el) => {
+      el.style.border = '5px solid green';
+      el.classList.add('tada');
+      addRemoveClickEvent(el, 'noClick');
+    });
   } else if (
     array[0].children[0].classList[1] !== array[1].children[0].classList[1]
   ) {
     array.forEach((el) => {
       el.style.border = '5px solid red';
+      el.classList.add('shake');
       setTimeout(() => {
         removeOpenAndShowClass(el);
         el.classList.remove('noClick');
         el.style.border = 'none';
+        el.classList.remove('shake');
       }, 1000);
     });
 
@@ -145,15 +163,25 @@ function addRemoveClickEvent(el, klass) {
 }
 
 function gameWon(array) {
-  array.length === 16 ? displayModal() : console.log({ matched });
+  if (array.length === 16) {
+    displayModal();
+  }
 }
 
 function displayModal() {
   modal.classList.remove('hidden');
-  time__status.innerText = timer.innerHTML;
+  time__status.innerHTML = timer.innerHTML;
   moves__status.innerText = counter;
-  stars__status.innerHTML = document.querySelector('.stars').innerHTML;
+  stars__status.innerText = starsRating;
   game.classList.add('blur');
+}
+
+function checkOpenArrayLength(el) {
+  if (open.length === 1) {
+    addRemoveClickEvent(el, 'noClick');
+  } else if (open.length === 2) {
+    checkIfCardsMatch(open);
+  }
 }
 
 function flipCardsOnClick() {
@@ -161,11 +189,7 @@ function flipCardsOnClick() {
     card.addEventListener('click', () => {
       addOpenAndShowClassToCards(card);
       addCardToOpenList(card, open);
-      open.length === 1
-        ? addRemoveClickEvent(card, 'noClick')
-        : open.length === 2
-          ? checkIfCardsMatch(open)
-          : console.log({ open });
+      checkOpenArrayLength(card);
       handleStars();
       gameWon(matched);
       handleMoves();
