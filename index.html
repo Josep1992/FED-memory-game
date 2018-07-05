@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
-    <meta name="description" content="">
+    <meta name="description" content="Memory Game">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -22,15 +23,12 @@
                 <p> Your Time:
                     <span id="time--status"></span>
                 </p>
-
                 <p> Your Moves:
                     <span id="moves--status"></span>
                 </p>
-
-
-                <ul id="stars--status">
-                </ul>
-
+                <p>Star Rating:
+                    <span id="star--status"></span>
+                </p>
             </div>
 
             <button class="modal--replay">
@@ -45,7 +43,8 @@
             <h1>Matching Game</h1>
         </header>
 
-        <section class="score-panel">
+        <section class="score-panel">:
+
             <ul class="stars">
                 <li>
                     <i class="fa fa-star"></i>
@@ -59,7 +58,8 @@
             </ul>
 
             <div class="timer-container">
-
+                <label id="minutes">00</label>:
+                <label id="seconds">00</label>
             </div>
 
             <div class="moves-container">
@@ -75,52 +75,52 @@
 
         <ul class="deck">
             <li class="card">
-                <i class="fa fa-diamond"></i>
+                <i class="fa fa-diamond fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="fa fa-compass fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-anchor"></i>
+                <i class="fa fa-gamepad fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-bolt fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-cube"></i>
+                <i class="fa fa-hand-scissors-o fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-anchor"></i>
+                <i class="fa fa-gamepad fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-leaf"></i>
+                <i class="fa fa-code fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bicycle"></i>
+                <i class="fa fa-space-shuttle fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-diamond"></i>
+                <i class="fa fa-diamond fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bomb"></i>
+                <i class="fa fa-money fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-leaf"></i>
+                <i class="fa fa-code fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bomb"></i>
+                <i class="fa fa-money fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-bolt fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-bicycle"></i>
+                <i class="fa fa-space-shuttle fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="fa fa-compass fa-lg"></i>
             </li>
             <li class="card">
-                <i class="fa fa-cube"></i>
+                <i class="fa fa-hand-scissors-o fa-lg"></i>
             </li>
         </ul>
     </div>
