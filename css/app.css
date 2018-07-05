@@ -19,8 +19,10 @@ body {
 }
 
 body {
-  background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-  font-family: 'Coda', cursive;
+  background: #ffffff url('../img/trianglify.png'); /* Background pattern from Subtle Patterns */
+  font-family: 'Raleway', sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
@@ -40,8 +42,12 @@ body {
 }
 
 h1 {
-  font-family: 'Open Sans', sans-serif;
   font-weight: 300;
+  text-align: center;
+}
+
+.fa {
+  color: #333;
 }
 
 /*
@@ -50,10 +56,12 @@ h1 {
 
 .deck {
   width: 660px;
-  min-height: 680px;
-  background: -webkit-linear-gradient(290deg, #02ccba 0%, #aa7ecd 100%);
-  background: -o-linear-gradient(290deg, #02ccba 0%, #aa7ecd 100%);
-  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  background: rgb(254, 226, 212);
+  background: linear-gradient(
+    168deg,
+    rgba(254, 226, 212, 1) 0%,
+    rgba(219, 120, 99, 1) 100%
+  );
   padding: 32px;
   border-radius: 10px;
   -webkit-box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -75,7 +83,8 @@ h1 {
 .deck .card {
   height: 125px;
   width: 125px;
-  background: #2e3d49;
+  background: #fd8565;
+  margin: 10px;
   font-size: 0;
   color: #ffffff;
   border-radius: 8px;
@@ -96,7 +105,7 @@ h1 {
 .deck .card.open {
   -webkit-transform: rotateY(0);
   transform: rotateY(0);
-  background: #02b3e4;
+  background: #ffbfa8;
   cursor: default;
 }
 
@@ -117,14 +126,14 @@ h1 {
 .score-panel {
   margin-bottom: 10px;
   display: flex;
-  align-content: center;
+  align-content: space-around;
   padding: 0;
   list-style: none;
 }
 
 .score-panel .stars {
   display: inline-block;
-  margin: 0 5px 0 0;
+  margin: 0 10px;
 }
 
 .score-panel .stars li {
@@ -134,13 +143,18 @@ h1 {
 .score-panel .restart {
   /* float: right; */
   cursor: pointer;
+  margin: 0 10px;
 }
 
+.score-panel .moves-container {
+  margin: 0 10px;
+}
 .modal {
   width: 400px;
+  color: #333;
   position: absolute;
   margin: 15em auto 0 auto;
-  background: #14c4bc;
+  background: white;
   border-radius: 8px;
   -webkit-box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -148,6 +162,7 @@ h1 {
   left: 0;
   right: 0;
   z-index: 1;
+  text-align: center;
 }
 
 .modal--header,
@@ -157,12 +172,22 @@ h1 {
 
 .modal--title {
   font-size: 4rem;
-  color: white;
 }
 
-.modal--status #stars--status {
-  display: inline-block;
+.modal--replay {
+  background-color: #fd8565;
+  padding: 1em;
+  border-radius: 10px;
+  border: none;
+}
+
+#stars--status {
+  text-align: center;
   list-style: none;
+}
+
+#stars--status li {
+  display: inline-block;
 }
 
 .hidden {
@@ -178,4 +203,70 @@ h1 {
 .blur {
   -webkit-filter: blur(10px); /* Chrome, Safari, Opera */
   filter: blur(10px);
+}
+
+/* Animation come from Animate.CSS Library */
+/* https://daneden.github.io/animate.css/ */
+
+/* Shake Class for icons not matching */
+@keyframes shake {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.tada {
+  animation-name: tada;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
