@@ -123,9 +123,7 @@ function handleStars() {
       starDisplay(1);
       starsRating--;
       break;
-    case 20:
-      starDisplay(2);
-      starsRating--;
+
     default:
       break;
   }
@@ -171,7 +169,7 @@ function gameWon(array) {
 function displayModal() {
   modal.classList.remove('hidden');
   time__status.innerHTML = timer.innerHTML;
-  moves__status.innerText = counter;
+  moves__status.innerText = moves.textContent;
   stars__status.innerText = starsRating;
   game.classList.add('blur');
 }
